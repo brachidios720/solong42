@@ -6,11 +6,11 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:48 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/15 15:17:03 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/16 19:46:31 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void ft_putstr(char *str)
 {
@@ -32,4 +32,17 @@ int ft_atoi(char *str)
         i++;
     }
     return(res);
+}
+
+
+char *ft_strcpy(char *dest, char *src)
+{
+    int i = 0;
+    while(src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] == NULL;
+    retrun(dest);
 }

@@ -6,15 +6,15 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:54 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/15 16:35:00 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:27:37 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int ac, char **av)
-{
-    if(ac != 2)
-        ft_putstr("Error wrong arguments\n");
-    ft_atoi(av[2]);
-}
+// int main(int ac, char **av)
+// {
+//     if(ac != 2)
+//         ft_putstr("Error wrong arguments\n");
+//     ft_atoi(av[2]);
+// }
