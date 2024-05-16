@@ -81,7 +81,7 @@ char **finish_map(char *file)
 
 int main(void)
 {
-    char *map_file = "../map/map1.ber";
+    char *map_file = "../map/map2.ber";
     char **tab = finish_map(map_file);
     int i = 0;
 

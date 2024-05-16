@@ -13,18 +13,18 @@
 #include "so_long.h"
 //#include "get_next_line.h"
 
-// t_map inis_map(t_map *map)
-// {
-//     map->sprite_collectible = NULL;
-//     map->sprite_exit = NULL;
-//     map->sprite_palyer = NULL;
-//     map->sprite_wall = NULL;
-//     map->file = NULL;
-//     map->mlx_ptr = NULL;
-//     map->win_ptr = NULL;
-//     map->pos.x = x;
-//     map->pos.y = y;
-// }
+t_map inis_map(t_map *map)
+{
+    map->sprite_collectible = NULL;
+    map->sprite_exit = NULL;
+    map->sprite_palyer = NULL;
+    map->sprite_wall = NULL;
+    map->file = ;
+    map->mlx_ptr = NULL;
+    map->win_ptr = NULL;
+    map->pos.x = x;
+    map->pos.y = y;
+}
 #include<stdio.h>
 #include<stdlib.h>
 
