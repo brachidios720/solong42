@@ -13,28 +13,6 @@
 #include "../include/so_long.h"
 #include "../gnl/get_next_line.h"
 
-char *ft_strcpy(char *dest, char *src)
-{
-    int i = 0;
-    while(src[i])
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return(dest);
-}
-
-void ft_putstr(char *str)
-{
-    int i = 0;
-    while(str[i])
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
-}
-
 int line(char *file)
 {
     int count_line;
@@ -50,7 +28,7 @@ int line(char *file)
     {
         read_line = read(fd, &stock, 1);
         if(read_line == 0)
-            return(0);
+            break;
         if(read_line < 0)
             return(-1);
         if(stock == '\n')
@@ -66,9 +44,9 @@ char **map_alock(char *file)
     int ligne_count;
 
     ligne_count = line(file);
-    if(ligne_count >= 0)
+    if(ligne_count < 0)
         return(NULL);
-    map = malloc(sizeof(char *) * ligne_count + 1);
+    map = (char **)malloc(sizeof(char *) * (ligne_count + 1));
     if(!map)
     {
         ft_putstr("alloc failed");
@@ -82,14 +60,19 @@ char **finish_map(char *file)
     char **map;
     int i = 0;
     int fd;
-    int count = line(file);
+    
     
     map = map_alock(file);
     if(map == NULL)
         return(NULL);
     fd = open(file, O_RDONLY);
-    while(get_next_line(fd))
-        ;
+    if(fd < 0)
+    {
+        free(map);
+        return(NULL);
+    }
+    while((map[i] = get_next_line(fd)) != NULL)
+        i++;
     map[i] = NULL;
     close(fd);
     return(map);   
@@ -98,12 +81,18 @@ char **finish_map(char *file)
 
 int main(void)
 {
-    char *map = "../map/map2.ber";
-    char **tab = finish_map(map);
-    int  i = 0;
-    while(tab[i])
+    char *map_file = "../map/map1.ber";
+    char **tab = finish_map(map_file);
+    int i = 0;
+
+    if (tab == NULL)
+        ft_putstr("Failed");
+    while (tab[i])
     {
         printf("%s", tab[i]);
+        free(tab[i]);
         i++;
     }
+    free(tab);
+    return (0);
 }
