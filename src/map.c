@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:56:40 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/16 19:53:47 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:47:02 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,41 @@ char **finish_map(char *file)
     map[i] = NULL;
     close(fd);
     return(map);   
-}
+} 
 
 
-int main(void)
+// int main(void)
+// {
+//     char *map_file = "../map/map1.ber";
+//     char **tab = finish_map(map_file);
+//     int i = 0;
+
+//     if (tab == NULL)
+//         ft_putstr("Failed");
+//     while (tab[i])
+//     {
+//         printf("%s", tab[i]);
+//         free(tab[i]);
+//         i++;
+//     }
+    
+//     free(tab);
+//     return (0);
+// }
+
+int	main(int ac, char **av)
 {
-    char *map_file = "../map/map2.ber";
-    char **tab = finish_map(map_file);
-    int i = 0;
-
-    if (tab == NULL)
-        ft_putstr("Failed");
-    while (tab[i])
+	void	*mlx;
+	void	*mlx_win;
+    t_map *dat = NULL;
+    if(ac < 2)
     {
-        printf("%s", tab[i]);
-        free(tab[i]);
-        i++;
+        return(0);
     }
-    free(tab);
-    return (0);
+    inis_map(dat, av);
+	mlx = mlx_init();
+    mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+    add_image(dat);
+    parcours_map(dat);
+	mlx_loop(mlx);
 }

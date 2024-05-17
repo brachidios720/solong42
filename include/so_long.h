@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:52 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/16 19:52:20 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:47:17 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include<stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include "../mlx/mlx.h"
+
 
 
 // strcut 
@@ -45,16 +47,32 @@ typedef struct s_map
     void *sprite_palyer;
     void *sprite_exit;
     void *sprite_wall;
+    void *sprite_vide;
     t_data data_game;
     t_position pos;
     void *mlx_ptr;
     void *win_ptr;
+    int win_hight;
+    int win_width;
+    int image_size;
+    void *window;
+    void *mlx;
+    
     
 } t_map;
 
 
 
 // map
+
+char **finish_map(char *file);
+char **map_alock(char *file);
+int line(char *file);
+void inis_map(t_map *map, char **av);
+void display_map2D(t_map *data);
+void add_image(t_map *data);
+void render_xpm(t_map *data, int i, int j);
+void parcours_map(t_map *data);
 
 //t_map inis_map(t_map *map);
 
