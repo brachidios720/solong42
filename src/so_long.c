@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:23:31 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/20 18:25:13 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:15:07 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void inis_map(t_map *map, char **av)
 
 int main(int ac, char **av)
 {
-    if (ac < 2)
+    if (ac != 2)
         return (1);
     t_map *dat = malloc(sizeof(t_map));
     if (!dat)

@@ -6,7 +6,10 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:07:04 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/17 17:07:05 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:16:30 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/so_long.h"
+
+int move_player()
