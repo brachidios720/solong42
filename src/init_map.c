@@ -6,63 +6,57 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:42:09 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/17 17:47:10 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:24:53 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../gnl/get_next_line.h"
 
-
-void inis_map(t_map *map, char **av)
+void add_image(t_map *map)
 {
-    map->sprite_collectible = NULL;
-    map->sprite_exit = NULL;
-    map->sprite_palyer = NULL;
-    map->sprite_wall = NULL;
-    map->sprite_vide = NULL;
-    map->filename = av[1];
-    map->matrice = finish_map(map->filename);
-    map->mlx_ptr = 0;
-    map->win_ptr = 0;
+    map->window = mlx_new_window(map->mlx, map->win_width, map->win_hight, "so_long");
+    printf("%d\n", map->win_hight);
+    printf("%d\n", map->win_width);
+    
+    if (map->window == NULL)
+        exit(EXIT_FAILURE);
+    map->sprite_collectible = mlx_xpm_file_to_image(map->mlx, "../sprite/Collectibles/star_00.xpm", &map->image_size, &map->image_size);
+    map->sprite_vide = mlx_xpm_file_to_image(map->mlx, "../sprite/Tiles/block.xpm", &map->image_size, &map->image_size);
+    map->sprite_exit = mlx_xpm_file_to_image(map->mlx, "../sprite/Exit/exit_open_01.xpm", &map->image_size, &map->image_size);
+    map->sprite_wall = mlx_xpm_file_to_image(map->mlx, "../sprite/Ui/uiHeart_off01.xpm", &map->image_size, &map->image_size);
+    map->sprite_palyer = mlx_xpm_file_to_image(map->mlx, "../sprite/Player/idle_00.xpm", &map->image_size, &map->image_size);
+
+    if (!map->sprite_collectible || !map->sprite_exit || !map->sprite_vide || !map->sprite_palyer || !map->sprite_wall)
+        exit(EXIT_FAILURE);
 }
 
-void add_image(t_map *data)
+void render_xpm(t_map *map, int i, int j)
 {
-    data->image_size = 50;
-    data->win_hight = data->image_size * data->win_hight;
-    data->win_width = data->image_size * data->win_width;
-    data->sprite_collectible = mlx_xpm_file_to_image(data->mlx, "../sprite/Collectibles/star_00.xpm", &data->win_width, &data->win_hight);
-    data->sprite_vide = mlx_xpm_file_to_image(data->mlx, "../sprite/Tiles/block.xpm", &data->win_width, &data->win_hight);
-    data->sprite_exit = mlx_xpm_file_to_image(data->mlx, "../sprite/Exit/exit_open_01.xpm", &data->win_width, &data->win_hight);
-    data->sprite_wall = mlx_xpm_file_to_image(data->mlx, "../sprite/Ui/uiHeart_off01.xpm", &data->win_width, &data->win_hight);
-    data->sprite_palyer = mlx_xpm_file_to_image(data->mlx, "../sprite/Player/idle_00.xpm", &data->win_width, &data->win_hight);
-    // if(!data->sprite_collectible || !data->sprite_exit || !data->sprite_vide || !data->sprite_palyer || !data->sprite_wall)
-    //     return(1);
-    // return(0);      
+    if (map->matrice[i][j] == '1')
+        mlx_put_image_to_window(map->mlx, map->window, map->sprite_wall, map->image_size * j, map->image_size * i);
+    else if (map->matrice[i][j] == '0')
+        mlx_put_image_to_window(map->mlx, map->window, map->sprite_vide, map->image_size * j, map->image_size * i);
+    else if (map->matrice[i][j] == 'P')
+        mlx_put_image_to_window(map->mlx, map->window, map->sprite_palyer, map->image_size * j, map->image_size * i);
+    else if (map->matrice[i][j] == 'C')
+        mlx_put_image_to_window(map->mlx, map->window, map->sprite_collectible, map->image_size * j, map->image_size * i);
+    else if (map->matrice[i][j] == 'E')
+        mlx_put_image_to_window(map->mlx, map->window, map->sprite_exit, map->image_size * j, map->image_size * i);
 }
 
-void render_xpm(t_map *data, int i, int j)
+void parcours_map(t_map *map)
 {
-    if(data->matrice[i][j] == '1')
-        mlx_put_image_to_window(data->mlx, data->window, data->sprite_wall, data->image_size * i, data->image_size * j);
-    else if(data->matrice[i][j] == '0')
-        mlx_put_image_to_window(data->mlx, data->window, data->sprite_vide, data->image_size * i, data->image_size * j);
-    else if(data->matrice[i][j] == 'P')
-        mlx_put_image_to_window(data->mlx, data->window, data->sprite_palyer, data->image_size * i, data->image_size * j);
-    else if(data->matrice[i][j] == 'C')
-        mlx_put_image_to_window(data->mlx, data->window, data->sprite_collectible, data->image_size * i, data->image_size * j);
-    else if(data->matrice[i][j] == 'E')
-        mlx_put_image_to_window(data->mlx, data->window, data->sprite_exit, data->image_size * i, data->image_size * j);
-}
-
-void parcours_map(t_map *data)
-{
-    int i = -1;
-    int j = -1;
-    while(data->matrice[++i][j])
+    int i = 0;
+    int j;
+    while (map->matrice[i])
     {
-        while(data->matrice[i][++j])
-            render_xpm(data, i, j);
-            
+        j = 0;
+        while (map->matrice[i][j])
+        {
+            render_xpm(map, i, j);
+            j++;
+        }
+        i++;
     }
 }

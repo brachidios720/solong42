@@ -6,7 +6,7 @@
 #    By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 14:02:22 by rcarbonn          #+#    #+#              #
-#    Updated: 2024/05/17 17:40:01 by rcarbonn         ###   ########.fr        #
+#    Updated: 2024/05/20 18:25:31 by rcarbonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCG    = ../gnl/get_next_line.c ../gnl/get_next_line_utils.c
 	
 SRC     = map.c \
 		 utils.c \
-		 init_map.c
+		 init_map.c \
+		 so_long.c
 
 MLX_LIB	= ../mlx/libmlx.a
 

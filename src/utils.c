@@ -6,23 +6,11 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:48 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/17 14:09:16 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:14:42 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-char *ft_strcpy(char *dest, char *src)
-{
-    int i = 0;
-    while(src[i])
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return(dest);
-}
 
 void ft_putstr(char *str)
 {
@@ -44,4 +32,15 @@ int ft_atoi(char *str)
         i++;
     }
     return(res);
+}
+
+void    free_matrice(char **matrice)
+{
+    int i = 0;
+    while(matrice[i])
+    {
+        free(matrice[i]);
+        i++;
+    }
+    free(matrice);
 }
