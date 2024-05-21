@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:23:31 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/20 19:15:07 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:34:59 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ int main(int ac, char **av)
 {
     if (ac != 2)
         return (1);
-    t_map *dat = malloc(sizeof(t_map));
-    if (!dat)
+    t_data *data = malloc(sizeof(t_data));
+    t_map *map = malloc(sizeof(t_map));
+    if (!map)
         return (1);
-    inis_map(dat, av);
-    add_image(dat);
-    parcours_map(dat);
-    mlx_loop(dat->mlx);
-    free_matrice(dat->matrice);
+    inis_map(map, av);
+    add_image(map);
+    parcours_map(map);
+    add_data(map, data);
+    mlx_key_hook(map->window, move_player, map);
+    mlx_loop(map->mlx);
+    free_matrice(map->matrice);
 }
