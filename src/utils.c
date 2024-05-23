@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:48 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/20 17:14:42 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:38:56 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,32 @@ void    free_matrice(char **matrice)
         i++;
     }
     free(matrice);
+}
+
+void ft_exit(int i)
+{
+    if(i == 1)
+    {
+        printf("sucess");
+        exit(1);
+    }
+    else if(i == 2)
+    {
+        printf("failure");
+        exit(0);
+    }
+}
+
+void clear_sprite(t_map *map)
+{
+    if(map->sprite_collectible)
+        mlx_destroy_image(map->mlx, map->sprite_collectible);
+    if(map->sprite_exit)
+        mlx_destroy_image(map->mlx, map->sprite_exit);
+    if(map->sprite_palyer)
+        mlx_destroy_image(map->mlx, map->sprite_palyer);
+    if(map->sprite_vide)
+        mlx_destroy_image(map->mlx, map->sprite_vide);
+    if(map->sprite_wall)
+        mlx_destroy_image(map->mlx, map->sprite_wall);
 }

@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:56:40 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/20 18:25:08 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:19:58 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,17 @@ char **map_alock(char *file)
         return NULL;
     }
     return map;
+}
+void    ft_showmap(char **map)
+{
+    int i = 0;
+
+    while (map[i] != NULL)
+    {
+        printf("%s", map[i]);
+        i++;
+    }
+    
 }
 
 char **finish_map(char *file)

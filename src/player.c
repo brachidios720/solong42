@@ -6,50 +6,87 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:07:04 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/21 17:54:15 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:22:57 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void add_data(t_map *map, t_data *data)
+void add_data(t_map *map)
 {
-    int i = 0;
-    int j;
+    int i = 0; 
+    int j; 
     while (map->matrice[i])
     {
         j = 0;
         while (map->matrice[i][j])
         {
             if(map->matrice[i][j] == 'P')
-                ft_player_pos(map, data, i, j);
+                ft_player_pos(map, i, j); 
             else if(map->matrice[i][j] == 'C')
-                data->collectible++;
+                map->collectible++;
             else if(map->matrice[i][j] == 'E')
-                data->exit++;
+                map->exit++;
             j++;
         }
         i++;
     }
 }
 
-void  ft_player_pos(t_map *map,t_data *data, int i, int j)
+void check(t_map *map, int x, int y)
+{
+    if(map->matrice[x][y] == 'C' || map->matrice[x][y] == '0' || (map->collectible == 0 && map->matrice[x][y] == 'E'))
+    {
+        if(map->collectible == 0 && map->matrice[x][y] == 'E')
+            ft_exit(1);
+        else if (map->matrice[x][y] == 'C')
+        {
+            map->collectible--;
+            map->matrice[x][y] = 'P';
+            map->matrice[map->pos_x][map->pos_y] = '0';
+            map->pos_x = x;
+            map->pos_y = y;
+        }
+        else 
+        {
+            map->matrice[x][y] = 'P';
+            map->matrice[map->pos_x][map->pos_y] = '0';
+            map->pos_x = x;
+            map->pos_y = y;
+        }
+    }
+}
+
+
+void  ft_player_pos(t_map *map, int i, int j) 
 {
     map->pos_x = i;
     map->pos_y = j;
-    data->player++;
+    map->player++;
 }
 
-int move_player(t_map *map, int keycode)
+int move_player(int keycode,t_map *map)
 {
     if(keycode == KEY_W)
-        map->matrice[map->pos_x][map->pos_x] = map->matrice[map->pos_x + 1][map->pos_y];
+    {
+        check(map, map->pos_x - 1, map->pos_y);
+        parcours_map(map);
+    }
     else if(keycode == KEY_A)
-        map->matrice[map->pos_x][map->pos_y] = map->matrice[map->pos_x][map->pos_y - 1];
+    { 
+        check(map, map->pos_x, map->pos_y - 1);
+        parcours_map(map);
+    }
     else if(keycode == KEY_S)
-        map->matrice[map->pos_x][map->pos_y] = map->matrice[map->pos_x - 1][map->pos_y];
+    {
+        check(map, map->pos_x + 1, map->pos_y);
+        parcours_map(map);
+    }
     else if(keycode == KEY_D)
-        map->matrice[map->pos_x][map->pos_y] = map->matrice[map->pos_x][map->pos_y + 1];
-    parcours_map(map);
-    return(1);
+    {
+        check(map, map->pos_x, map->pos_y + 1);
+        parcours_map(map);
+    }
+    printf("number of steps : %d\n", map->count_step++);
+    return(0);
 }   
