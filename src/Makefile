@@ -6,7 +6,7 @@
 #    By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 14:02:22 by rcarbonn          #+#    #+#              #
-#    Updated: 2024/05/23 16:56:45 by rcarbonn         ###   ########.fr        #
+#    Updated: 2024/05/23 18:34:45 by rcarbonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC     = map.c \
 		 utils.c \
 		 init_map.c \
 		 so_long.c \
-		 player.c
+		 player.c \
+		 parsing_maps.c
 
 MLX_LIB	= ../mlx/libmlx.a
 

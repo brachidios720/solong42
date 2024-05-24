@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:48 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/22 16:38:56 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:04:16 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ void ft_putstr(char *str)
     }
 }
 
-int ft_atoi(char *str)
-{
-    int i = 0;
-    int res = 0;
-    while(str[i] >= '0' && str[i] <= '9')
-    {
-        res = res * 10 + str[i] - '0';
-        i++;
-    }
-    return(res);
-}
 
 void    free_matrice(char **matrice)
 {
