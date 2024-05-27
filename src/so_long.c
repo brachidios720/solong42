@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:23:31 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/24 16:28:33 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:03:17 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main(int ac, char **av)
         return (0);
     t_map map;
     inis_map(&map, av);
-    ft_error(&map);
+    ft_check_error(&map);
     map.mlx = mlx_init();
     map.window = mlx_new_window(map.mlx, map.win_width, map.win_hight, "so_long");
     if (map.window == NULL)
