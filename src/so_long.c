@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:23:31 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/28 18:30:18 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:16:34 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int main(int ac, char **av)
     mlx_key_hook(map.window, move_player, &map);
     mlx_hook(map.window, 33, 1L << 22, close_with_cross, &map);
     mlx_loop(map.mlx);
-    free_matrice(map.matrice);
+    ft_clear(&map);
 
     /*
     if (ac != 2)

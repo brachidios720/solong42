@@ -6,12 +6,12 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 16:42:09 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/23 17:25:05 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:35:12 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include "../gnl/get_next_line.h"
+
 
 void add_image(t_map *map)
 {   

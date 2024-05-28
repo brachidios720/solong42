@@ -6,12 +6,12 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:56:40 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/23 18:19:58 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:37:22 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include "../gnl/get_next_line.h"
+
 
 int line(char *file)
 {
@@ -60,7 +60,7 @@ void    ft_showmap(char **map)
 
     while (map[i] != NULL)
     {
-        printf("%s", map[i]);
+        ft_printf("%s", map[i]);
         i++;
     }
     

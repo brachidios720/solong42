@@ -6,21 +6,11 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:08:48 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/28 17:40:07 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:35:45 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void ft_putstr(char *str)
-{
-    int i = 0;
-    while(str[i])
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
-}
 
 
 void    free_matrice(char **matrice)
@@ -34,34 +24,30 @@ void    free_matrice(char **matrice)
     free(matrice);
 }
 
-void ft_exit(int i)
+void ft_exit(int i, t_map *map)
 {
     if(i == 1)
     {
-        printf("T'Y EsT Le BOSS");
-        exit(1);
+        ft_printf("T'Y EsT Le BOSS");
     }
     else if(i == 2)
     {
-        printf("failure");
-        exit(0);
+        ft_printf("failure");
     }
     else if(i == 3)
     {
-        printf("map is not rectnagle");
-        exit(0);
+        ft_printf("map is not rectnagle");
     }
     else if(i == 4)
     {
-        printf("wall not clean");
-        exit(0);
+        ft_printf("wall not clean");
     }
     else if(i == 5)
     {
-        printf("quit");
-        exit(0);
+        ft_printf("quit");
     }
-    
+    ft_clear(map);
+    exit(0);
 }
 
 int ft_strlen_int(char *str)

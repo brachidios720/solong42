@@ -6,7 +6,7 @@
 #    By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 14:02:22 by rcarbonn          #+#    #+#              #
-#    Updated: 2024/05/28 18:07:06 by rcarbonn         ###   ########.fr        #
+#    Updated: 2024/05/28 19:32:20 by rcarbonn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,15 @@ CFLAGS  = -Wall -Werror -Wextra -g3
 RM      = rm -f
 NAME    = so_long
 
-SRCG    = ../gnl/get_next_line.c ../gnl/get_next_line_utils.c
+SRCG    = ../gnl/get_next_line.c ../gnl/get_next_line_utils.c 
 	
+SRCP	= ../printf/src/ft_printf.c \
+			../printf/src/ft_putchar.c \
+			../printf/src/ft_putnbr.c \
+			../printf/src/ft_putptr.c \
+			../printf/src/ft_putstr.c \
+			../printf/src/utils.c
+			
 SRC     = map.c \
 		 utils.c \
 		 init_map.c \
@@ -31,10 +38,11 @@ MLX_FLAG =	-lX11 -lXext
 
 MLX_EX =	$(MLX_LIB) $(MLX_FLAG)
 
+OBJP	= $(SRCP:.c=.o)
 OBJG    = $(SRCG:.c=.o)
 OBJ     = $(SRC:.c=.o)
 
-OBJS    = $(OBJG) $(OBJ) 
+OBJS    = $(OBJG) $(OBJ) $(OBJP) 
 
 all: $(NAME)
 

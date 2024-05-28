@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:04:16 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/28 18:31:30 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:14:54 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void ft_clear(t_map *map)
             mlx_destroy_display(map->mlx);
             free(map->mlx);
         }
-        free(map);
+        //free(map);
     }
     exit(0);
 }

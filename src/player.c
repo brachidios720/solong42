@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:07:04 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/28 17:38:49 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:36:36 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void check(t_map *map, int x, int y)
     if(map->matrice[x][y] == 'C' || map->matrice[x][y] == '0' || (map->collectible == 0 && map->matrice[x][y] == 'E'))
     {
         if(map->collectible == 0 && map->matrice[x][y] == 'E')
-            ft_exit(1);
+            ft_exit(1, map);
         else if (map->matrice[x][y] == 'C')
         {
             map->collectible--;
@@ -88,7 +88,7 @@ int move_player(int keycode,t_map *map)
         parcours_map(map);
     }
     else if(keycode == KEY_ESCAPE)
-        ft_exit(5);
-    printf("number of steps : %d\n", map->count_step++);
+        ft_exit(5, map);
+    ft_printf("number of steps : %d\n", map->count_step++);
     return(0);
 }   
