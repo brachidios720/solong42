@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:23:31 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/27 18:03:17 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:30:18 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void inis_map(t_map *map, char **av)
     map->sprite_vide = NULL;
     map->filename = av[1];
     map->matrice = finish_map(map->filename);
+    map->copie_matrice = finish_map(map->filename);
     map->collectible = 0;
     map->exit = 0;
     map->player = 0;
@@ -50,15 +51,16 @@ int main(int ac, char **av)
         return (0);
     t_map map;
     inis_map(&map, av);
+    add_data(&map);
     ft_check_error(&map);
     map.mlx = mlx_init();
     map.window = mlx_new_window(map.mlx, map.win_width, map.win_hight, "so_long");
     if (map.window == NULL)
         exit(EXIT_FAILURE);
     add_image(&map);
-    add_data(&map);
     parcours_map(&map);
     mlx_key_hook(map.window, move_player, &map);
+    mlx_hook(map.window, 33, 1L << 22, close_with_cross, &map);
     mlx_loop(map.mlx);
     free_matrice(map.matrice);
 

@@ -6,7 +6,7 @@
 /*   By: rcarbonn <rcarbonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:07:04 by rcarbonn          #+#    #+#             */
-/*   Updated: 2024/05/23 18:22:57 by rcarbonn         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:38:49 by rcarbonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int move_player(int keycode,t_map *map)
         check(map, map->pos_x, map->pos_y + 1);
         parcours_map(map);
     }
+    else if(keycode == KEY_ESCAPE)
+        ft_exit(5);
     printf("number of steps : %d\n", map->count_step++);
     return(0);
 }   
